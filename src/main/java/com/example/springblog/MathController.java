@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-    @Controller
-    public class MathController {
+@Controller
+public class MathController {
 
     @GetMapping("/add/{numOne}/and/{numTwo}")
     @ResponseBody
@@ -32,4 +32,4 @@ import org.springframework.web.bind.annotation.ResponseBody;
     public double divide(@PathVariable double numSeven, @PathVariable double numEight) {
         return numSeven / numEight;
     }
-    }
+}

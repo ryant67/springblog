@@ -3,8 +3,8 @@ package com.example.springblog;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-    @Controller
-    public class FirstController {
+@Controller
+public class FirstController {
     @GetMapping("/test")
     @ResponseBody
     public String test() {

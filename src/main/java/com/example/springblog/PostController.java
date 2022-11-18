@@ -14,7 +14,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     @ResponseBody
-    public String indPosts(@PathVariable int id) {
+    public String indPosts(@PathVariable long id) {
         return "You are now viewing a Post with the ID of " + id + "!";
     }
 

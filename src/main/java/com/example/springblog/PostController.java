@@ -29,5 +29,4 @@ public class PostController {
     public String createPost() {
         return "You have now created a new Post!";
     }
-
 }

@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
     @GetMapping("/add/{numOne}/and/{numTwo}")
     @ResponseBody
-    public int add(@PathVariable int numOne, @PathVariable int numTwo) {
-        return numOne + numTwo;
+    //Changed the public int --> public String to allow concatenation explaining the math equation.
+    public String add(@PathVariable int numOne, @PathVariable int numTwo) {
+        return "The sum of " + numOne + " and " + numTwo + " = " + (numOne + numTwo);
     }
 
     @GetMapping("/subtract/{numThree}/from/{numFour}")
@@ -28,7 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
     @GetMapping("/divide/{numSeven}/by/{numEight}")
     @ResponseBody
-    public int divide(@PathVariable int numSeven, @PathVariable int numEight) {
+    public double divide(@PathVariable double numSeven, @PathVariable double numEight) {
         return numSeven / numEight;
     }
     }

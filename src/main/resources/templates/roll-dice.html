@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dice Roll</title>
+</head>
+<body>
+
+    <h1>Pick a number between 1 and 6!</h1>
+    <a href="/roll-dice/1">1</a>
+    <a href="/roll-dice/2">2</a>
+    <a href="/roll-dice/3">3</a>
+    <a href="/roll-dice/4">4</a>
+    <a href="/roll-dice/5">5</a>
+    <a href="/roll-dice/6">6</a>
+
+    <h1>The random number from the die is: <span th:text="${randomNumber}"></span></h1>
+    <p th:if="${results == true}">Congratulations, You Guessed Correctly!</p>
+    <p th:if="${results == false}">I'm sorry but you guessed incorrectly...</p>
+
+</body>
+</html>

@@ -1,7 +1,9 @@
 package com.example.springblog.controllers;
 
 import com.example.springblog.models.Post;
+import com.example.springblog.models.User;
 import com.example.springblog.repositories.PostRepository;
+import com.example.springblog.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +17,7 @@ public class PostController {
     private PostRepository postDao;
     private UserRepository userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
     }
@@ -64,14 +66,14 @@ public class PostController {
     //USING FORM MODEL BINDING
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
-        User user = getById(1L);
+        User user = userDao.getById(1L);
         //User user = userDao.getReferenceById(1L);
         post.setUser(user);
         postDao.save(post);
         return "redirect:/posts";
     }
 
-    @Getmapping("/posts/{id}/edit")
+    @GetMapping ("/posts/{id}/edit")
     public String editPost(@PathVariable long id, Model model) {
         model.addAttribute("post", postDao.getReferenceById(id));
         return "posts/editPost";
@@ -83,7 +85,7 @@ public class PostController {
         User user = userDao.getById(1L);
         post.setUser(user);
         //post.setId(post);
-        post.Dao.save(post);
+        postDao.save(post);
         return "redirect:/posts";
     }
 }

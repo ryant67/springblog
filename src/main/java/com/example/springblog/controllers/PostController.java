@@ -86,9 +86,4 @@ public class PostController {
         post.Dao.save(post);
         return "redirect:/posts";
     }
-
-
-
-
-
 }

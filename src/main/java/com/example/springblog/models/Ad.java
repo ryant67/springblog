@@ -1,6 +1,7 @@
 package com.example.springblog.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ads")

@@ -4,6 +4,7 @@ import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
 import com.example.springblog.repositories.PostRepository;
 import com.example.springblog.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -67,9 +68,12 @@ public class PostController {
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post) {
         User user = userDao.getById(1L);
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //User user = userDao.getReferenceById(1L);
-        post.setUser(user);
+        post.setUser(currentUser);
         postDao.save(post);
+
+        emailService.prepareAndSend(post, "New Post Created!", "A new post has been created! Here is the title of your new post! Title: " + post.getTitle());
 
         return "redirect:/posts";
     }

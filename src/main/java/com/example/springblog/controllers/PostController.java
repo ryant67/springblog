@@ -4,6 +4,7 @@ import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
 import com.example.springblog.repositories.PostRepository;
 import com.example.springblog.repositories.UserRepository;
+import com.example.springblog.services.EmailService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,12 @@ public class PostController {
 
     private PostRepository postDao;
     private UserRepository userDao;
+    private EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao) {
+    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -32,9 +35,9 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-    public String idPosts(@PathVariable long id, Model model) {
-        Post idPosts = postDao.getById(id);
-        model.addAttribute("post", idPosts);
+    public String singlePost(@PathVariable long id, Model model) {
+        Post singlePost = postDao.getById(id);
+        model.addAttribute("post", singlePost);
         return "posts/show";
     }
 
@@ -46,7 +49,7 @@ public class PostController {
 
     //USING FORM MODEL BINDING:
     @GetMapping("/posts/create")
-    public String createPostForm(Model model) {
+    public String showCreateForm(Model model) {
         model.addAttribute("post", new Post());
         return "posts/create";
     }
@@ -66,8 +69,8 @@ public class PostController {
 
     //USING FORM MODEL BINDING
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post) {
-        User user = userDao.getById(1L);
+    public String create(@ModelAttribute Post post) {
+        //User user = userDao.getById(1L);
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //User user = userDao.getReferenceById(1L);
         post.setUser(currentUser);

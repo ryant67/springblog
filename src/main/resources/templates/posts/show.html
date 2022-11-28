@@ -2,9 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>Individual Post</title>
 </head>
 <body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1 th:text="${post.user.email}"></h1>
+            <h1 th:text="${post.title}"></h1>
+            <p th:text="${post.body}"></p>
+            <small th:text="${'ID: ' + post.id}"></small>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

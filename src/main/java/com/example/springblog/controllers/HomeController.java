@@ -7,11 +7,9 @@ import com.example.springblog.services.AdService;
 import com.example.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -34,6 +32,23 @@ public class HomeController {
     @ResponseBody
     public String landing() {
     return "This is the Landing Page!";
+    }
+
+    @GetMapping("/dogpark")
+    public String dogpark(Model model) {
+        List<String> dogs = new ArrayList<>();
+        dogs.add("Bubbles");
+        dogs.add("Spot");
+        dogs.add("Ice");
+
+        model.addAttribute("dogs", dogs);
+        return "dogpark";
+    }
+
+    @GetMapping("/hello/{name}")
+    public String sayHello(@PathVariable String name, Model model) {
+        model.addAttribute("name", name);
+        return "hello";
     }
 
     @GetMapping("/ads")

@@ -2,9 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <title>All Posts</title>
+    <th:block th:replace="/partials/partials.html :: head"></th:block>
 </head>
 <body>
+<nav th:replace="/partials/partials.html :: navbar"></nav>
 
+<div class="container">
+    <div class="row">
+        <div class="col" th:each="post : ${allPosts}">
+            <h1 th:text="${'post by: ' + post.user.username}"></h1>
+            <h2 th:text="${'contact me at: ' + post.user.email}"></h2>
+            <h3 th:text="${post.title}"></h3>
+            <p th:text="${post.body}"></p>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="/partials/partials.html :: scripts"></th:block>
 </body>
 </html>

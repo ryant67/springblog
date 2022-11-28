@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthController {
 
-    private UserRepository userDao;
+    private final UserRepository userDao;
 
     public AuthController(UserRepository userDao) {
         this.userDao = userDao;

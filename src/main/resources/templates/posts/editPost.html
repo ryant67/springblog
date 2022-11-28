@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,20 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-<h1>Create a post!</h1>
-
-
-<!--Without form model binding-->
-<!--<form action="/posts/create" method="POST">-->
-<!--    <label for="title">title</label>-->
-<!--    <input type="text" id="title" name="title">-->
-<!--    <label for="description">description</label>-->
-<!--    <textarea id="description" name="description"></textarea>-->
-<!--    <button type="submit">submit</button>-->
-<!--</form>-->
-
-<!--FORM MODEL BINDING-->
-<form th:action="@{/posts/create}" th:method="POST" th:object="${post}">
+<h1>edit you post</h1>
+<form th:action="@{/posts/edit}" th:method="POST" th:object="${post}">
+    <input th:field="*{id}" style="display: none">"
     <label for="title">title</label>
     <input th:field="*{title}" id="title">
     <br/>
@@ -30,6 +19,5 @@
     <br />
     <button type="submit">post</button>
 </form>
-
 </body>
 </html>

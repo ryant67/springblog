@@ -1,6 +1,7 @@
 package com.example.springblog.services;
 
 import com.example.springblog.models.Ad;
+import com.example.springblog.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
@@ -27,6 +28,21 @@ public class EmailService {
         try {
             this.emailSender.send(msg);
         } catch (MailException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+
+    public void prepareAndSend(Post post, String subject, String body) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(from);
+        msg.setTo(post.getUser().getEmail());
+        msg.setSubject(subject);
+        msg.setText(body);
+
+        try {
+            this.emailSender.send(msg);
+        } catch (MailException ex) {
+            //Log the error and move on...
             System.err.println(ex.getMessage());
         }
     }

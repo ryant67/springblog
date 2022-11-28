@@ -70,6 +70,7 @@ public class PostController {
         //User user = userDao.getReferenceById(1L);
         post.setUser(user);
         postDao.save(post);
+
         return "redirect:/posts";
     }
 

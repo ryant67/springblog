@@ -33,6 +33,7 @@ public class UserController {
         String hash = passwordEncoder.encode(user.getPassword());
         //Set the password to the hashed version.
         user.setPassword(hash);
+        //Save the User to the DB.
         userDao.save(user);
         return "redirect:/login";
     }

@@ -25,7 +25,7 @@ public class User {
 
     public User(){};
 
-    //Create a copy of the user to provide
+    //Create a copy of the user to provide to the UserWithRoles class.
     public User(User copy) {
         id = copy.id;
         email = copy.email;
